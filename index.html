@@ -187,9 +187,18 @@ let timerInterval = null;
 fetch("data/questions.json")
   .then(res => res.json())
   .then(data => {
-    questions = data.questions;
-    document.getElementById("lastUpdated").innerText =
-      `Last updated: ${data.last_updated} · ${data.n_questions} questions`;
+    // Support BOTH formats:
+    // 1) wrapped object { last_updated, n_questions, questions }
+    // 2) plain array [ {...}, {...} ]
+    if (Array.isArray(data)) {
+      questions = data;
+      document.getElementById("lastUpdated").innerText =
+        `Loaded ${questions.length} questions`;
+    } else {
+      questions = data.questions;
+      document.getElementById("lastUpdated").innerText =
+        `Last updated: ${data.last_updated} · ${data.n_questions} questions`;
+    }
     newQuestion();
   })
   .catch(err => console.error("Failed to load questions:", err));

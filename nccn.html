@@ -1,48 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>NCCN Quick Access – Gynecologic Oncology</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NCCN Guidelines – Quick Access (Gynecologic Oncology)</title>
 
-  <link rel="stylesheet" href="common.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f7fa;
+      color: #222;
+    }
+
+    header {
+      background: #1f3a5f;
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 2.5rem auto;
+      padding: 0 1rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 1.2rem 1.3rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #1f3a5f;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    .note {
+      margin-top: 2rem;
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1.8rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      background: #fafafa;
+    }
+
+    footer strong {
+      color: #1f3a5f;
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="nccn-header">
-  <h1>NCCN Quick Access</h1>
-  <p>Gynecologic Oncology</p>
+<header>
+  <h1>NCCN Guidelines – Quick Access</h1>
+  <p>Gynecologic Oncology · External links open in new tab</p>
 </header>
 
-<nav class="nccn-nav">
-  <a href="ovary.html">Ovary</a>
-  <a href="cervix.html">Cervix</a>
-  <a href="endometrium.html">Endometrium</a>
-  <a href="../index.html">← Back to Questions</a>
-</nav>
+<main>
 
-<main class="nccn-main">
-  <section class="nccn-card">
-    <h2>Purpose</h2>
-    <p>
-      This page provides rapid, structured access to NCCN-aligned
-      gynecologic oncology pathways for use in clinical practice,
-      teaching, and exam preparation.
-    </p>
-  </section>
+  <div class="grid">
 
-  <section class="nccn-card">
-    <h2>How to use</h2>
-    <ul>
-      <li>Navigate by disease site</li>
-      <li>Use alongside formal NCCN guidelines</li>
-      <li>Designed for rapid clinical recall</li>
-    </ul>
-  </section>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/uterine.pdf" target="_blank" rel="noopener">Uterine Neoplasms</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/ovarian.pdf" target="_blank" rel="noopener">Ovarian Cancer</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/cervical.pdf" target="_blank" rel="noopener">Cervical Cancer</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/vulvar.pdf" target="_blank" rel="noopener">Vulvar Cancer</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/vaginal.pdf" target="_blank" rel="noopener">Vaginal Cancer</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/gtn.pdf" target="_blank" rel="noopener">Gestational Trophoblastic Neoplasia</a></div>
+
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/genetics_colon.pdf" target="_blank" rel="noopener">Genetics: Colorectal / Endometrial</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/genetics_bop.pdf" target="_blank" rel="noopener">Genetics: Breast / Ovarian</a></div>
+
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/immunotherapy.pdf" target="_blank" rel="noopener">Immunotherapy-Related Toxicities</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/pain.pdf" target="_blank" rel="noopener">Cancer Pain</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/antiemesis.pdf" target="_blank" rel="noopener">Antiemesis</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/vte.pdf" target="_blank" rel="noopener">Venous Thromboembolism (VTE)</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/fatigue.pdf" target="_blank" rel="noopener">Cancer-Related Fatigue</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/growthfactors.pdf" target="_blank" rel="noopener">Growth Factors (G-CSF)</a></div>
+    <div class="card"><a href="https://www.nccn.org/professionals/physician_gls/pdf/palliative.pdf" target="_blank" rel="noopener">Palliative Care</a></div>
+
+  </div>
+
+  <p class="note">
+    This page provides rapid access to selected NCCN guidelines for educational
+    and clinical reference. Always consult the full NCCN guidelines and local
+    institutional policies when making clinical decisions.
+  </p>
+
 </main>
 
-<footer class="nccn-footer">
-  © <span id="year"></span> Yoav Brezinov, MD MSc
+<footer>
+  © <span id="year"></span> <strong>Yoav Brezinov, MD MSc</strong><br>
+  Gynecologic Oncology · Educational Resource
 </footer>
 
 <script>

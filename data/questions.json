@@ -1,0 +1,134 @@
+[
+  {
+    "vignette": "A 58-year-old postmenopausal woman undergoes total hysterectomy and BSO for grade 2 endometrioid endometrial carcinoma. Final pathology shows 60% myometrial invasion and substantial LVSI.",
+    "parts": {
+      "A": "Define high-intermediate risk endometrial cancer.",
+      "B": "List the pathological factors contributing to this risk category.",
+      "C": "How does this risk category influence adjuvant treatment decisions?"
+    },
+    "answer": "High-intermediate risk is defined by a combination of patient age and pathological factors including deep myometrial invasion, grade 2–3 histology, and/or LVSI, based on GOG-99 and PORTEC criteria.",
+    "explanation": "Royal examiners expect candidates to identify variables rather than quote rigid definitions and to acknowledge variation between trials.",
+    "reference": "GOG-99; PORTEC-1/2; ESGO-ESTRO-ESP Endometrial Cancer Guidelines"
+  },
+  {
+    "vignette": "A 63-year-old woman presents with abdominal distension and ascites. Imaging shows diffuse peritoneal disease consistent with advanced ovarian cancer.",
+    "parts": {
+      "A": "What factors determine suitability for primary debulking surgery?",
+      "B": "When is neoadjuvant chemotherapy preferred?",
+      "C": "What must be documented before interval debulking surgery?"
+    },
+    "answer": "Primary debulking is preferred when complete cytoreduction is feasible. Neoadjuvant chemotherapy is chosen if disease is unresectable or morbidity would be excessive. Documentation includes disease extent, response to chemotherapy, and surgical intent.",
+    "explanation": "The examiner looks for appropriate patient selection and structured documentation.",
+    "reference": "EORTC 55971; CHORUS; NCCN Ovarian Cancer Guidelines"
+  },
+  {
+    "vignette": "A 34-year-old woman is diagnosed with stage IA1 squamous cell carcinoma of the cervix without LVSI and wishes to preserve fertility.",
+    "parts": {
+      "A": "Define stage IA1 cervical cancer.",
+      "B": "Outline fertility-sparing management options.",
+      "C": "When would lymph node assessment be required?"
+    },
+    "answer": "Stage IA1 disease is defined as stromal invasion ≤3 mm depth and ≤7 mm width. Management is cervical conization with negative margins if no LVSI is present. Lymph node assessment is not required unless LVSI is present.",
+    "explanation": "This question tests understanding of staging thresholds and conservative management principles.",
+    "reference": "FIGO 2018 Cervical Cancer Staging; NCCN Cervical Cancer"
+  },
+  {
+    "vignette": "A 55-year-old woman undergoes radical hysterectomy for cervical cancer. Pathology reveals positive pelvic lymph nodes.",
+    "parts": {
+      "A": "List the high-risk pathological features after radical hysterectomy.",
+      "B": "What adjuvant treatment is indicated?",
+      "C": "What evidence supports this approach?"
+    },
+    "answer": "High-risk features include positive lymph nodes, positive margins, and parametrial involvement. Adjuvant concurrent chemoradiation is indicated. This is supported by Peters et al.",
+    "explanation": "Candidates must distinguish high-risk from intermediate-risk features and link them to therapy.",
+    "reference": "Peters et al.; NCCN Cervical Cancer Guidelines"
+  },
+  {
+    "vignette": "A 70-year-old woman with vulvar cancer undergoes radical vulvectomy. Sentinel node biopsy is negative.",
+    "parts": {
+      "A": "What factors determine the need for adjuvant radiotherapy?",
+      "B": "How does nodal status influence management?",
+      "C": "What are common complications of treatment?"
+    },
+    "answer": "Adjuvant radiotherapy is based on tumor size, depth of invasion, margins, and nodal status. Negative sentinel nodes usually preclude groin radiation. Complications include lymphedema and wound breakdown.",
+    "explanation": "The examiner expects a risk-based approach and awareness of morbidity.",
+    "reference": "NCCN Vulvar Cancer Guidelines"
+  },
+  {
+    "vignette": "A 60-year-old woman with stage IIIC high-grade serous ovarian cancer completes carboplatin-paclitaxel chemotherapy.",
+    "parts": {
+      "A": "What maintenance therapy options may be considered?",
+      "B": "How does BRCA/HRD status influence decisions?",
+      "C": "What is the goal of maintenance therapy?"
+    },
+    "answer": "Maintenance options include PARP inhibitors and/or bevacizumab depending on molecular profile. BRCA/HRD positivity predicts benefit from PARP inhibition. The goal is prolongation of progression-free survival.",
+    "explanation": "Royal answers should demonstrate understanding of personalized therapy.",
+    "reference": "SOLO-1; PRIMA; PAOLA-1; NCCN Ovarian Cancer"
+  },
+  {
+    "vignette": "A 47-year-old woman presents with abnormal uterine bleeding. Biopsy shows complex atypical hyperplasia.",
+    "parts": {
+      "A": "What is the standard definitive management?",
+      "B": "When is conservative management acceptable?",
+      "C": "How should patients be followed if fertility-sparing treatment is chosen?"
+    },
+    "answer": "Definitive management is hysterectomy. Conservative management with progestins may be considered in fertility-desiring patients. Close surveillance with repeat biopsies is mandatory.",
+    "explanation": "This tests risk stratification and counseling.",
+    "reference": "ACOG; ESGO Endometrial Cancer Guidelines"
+  },
+  {
+    "vignette": "A patient with ovarian cancer has persistent disease after first-line chemotherapy.",
+    "parts": {
+      "A": "Define platinum-resistant disease.",
+      "B": "How does this classification affect treatment options?",
+      "C": "What is the prognosis?"
+    },
+    "answer": "Platinum-resistant disease recurs within 6 months of platinum therapy. Treatment options are non-platinum agents or clinical trials. Prognosis is poor.",
+    "explanation": "Candidates must recall definitions and clinical implications.",
+    "reference": "NCCN Ovarian Cancer Guidelines"
+  },
+  {
+    "vignette": "A 52-year-old woman undergoes surgery for a uterine mass suspicious for sarcoma.",
+    "parts": {
+      "A": "What features raise suspicion for uterine sarcoma preoperatively?",
+      "B": "How should surgery be approached?",
+      "C": "What adjuvant therapies may be considered?"
+    },
+    "answer": "Rapid growth, postmenopausal bleeding, and atypical imaging raise suspicion. Surgery should avoid morcellation. Adjuvant therapy depends on histology and stage.",
+    "explanation": "This question evaluates oncologic surgical principles.",
+    "reference": "NCCN Uterine Sarcoma Guidelines"
+  },
+  {
+    "vignette": "A 45-year-old woman with early-stage cervical cancer asks about sentinel lymph node mapping.",
+    "parts": {
+      "A": "What is the rationale for sentinel node mapping?",
+      "B": "Which tracers are commonly used?",
+      "C": "How are positive sentinel nodes managed?"
+    },
+    "answer": "Sentinel mapping reduces morbidity while maintaining staging accuracy. ICG, blue dye, or radiocolloid may be used. Positive nodes warrant adjuvant chemoradiation.",
+    "explanation": "Examiners look for understanding of modern surgical staging.",
+    "reference": "FIGO; NCCN Cervical Cancer"
+  },
+  {
+    "vignette": "A patient with endometrial cancer is found to have isolated tumor cells in a sentinel lymph node.",
+    "parts": {
+      "A": "Define isolated tumor cells.",
+      "B": "How do they differ from micrometastases?",
+      "C": "How do they influence adjuvant treatment?"
+    },
+    "answer": "Isolated tumor cells are deposits ≤0.2 mm. They differ from micrometastases by size. Their impact on adjuvant therapy is controversial and individualized.",
+    "explanation": "Royal answers should acknowledge uncertainty.",
+    "reference": "ESGO-ESTRO-ESP Endometrial Cancer Guidelines"
+  },
+  {
+    "vignette": "A 68-year-old woman with ovarian cancer develops bowel obstruction from recurrent disease.",
+    "parts": {
+      "A": "What factors guide management decisions?",
+      "B": "When is surgery appropriate?",
+      "C": "What palliative options exist?"
+    },
+    "answer": "Management depends on performance status, disease burden, and goals of care. Surgery may be appropriate in selected patients. Palliative options include stenting, venting gastrostomy, and medical management.",
+    "explanation": "This tests clinical judgment and patient-centered care.",
+    "reference": "NCCN Ovarian Cancer; ESMO Guidelines"
+  }
+]

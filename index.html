@@ -38,6 +38,7 @@
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.95rem;
+      margin-right: 0.5rem;
     }
     button.secondary {
       background: #e3ecf7;
@@ -45,8 +46,9 @@
     }
     textarea {
       width: 100%;
-      min-height: 80px;
-      margin-top: 0.5rem;
+      min-height: 60px;
+      margin-top: 0.4rem;
+      margin-bottom: 0.6rem;
       padding: 0.5rem;
       font-family: inherit;
     }
@@ -54,7 +56,7 @@
     .meta {
       font-size: 0.9rem;
       color: #555;
-      margin-top: 0.5rem;
+      margin-bottom: 0.4rem;
     }
   </style>
 </head>
@@ -62,15 +64,24 @@
 
 <header>
   <h1>Gynecologic Oncology – Review Questions</h1>
-  <p>Open‑ended questions with references and explanations</p>
+  <p>Structured 3‑minute open questions (≈1 minute per section)</p>
 </header>
 
 <main>
   <section>
+    <div class="meta" id="counter"></div>
+    <div class="meta" id="timer"></div>
+
     <h2 id="question"></h2>
 
-    <label><strong>Your answer:</strong></label>
-    <textarea id="userAnswer" placeholder="Type your answer here…"></textarea>
+    <label><strong>Part A</strong></label>
+    <textarea></textarea>
+
+    <label><strong>Part B</strong></label>
+    <textarea></textarea>
+
+    <label><strong>Part C</strong></label>
+    <textarea></textarea>
 
     <div style="margin-top:1rem;">
       <button onclick="showAnswer()">Show answer</button>
@@ -93,43 +104,49 @@
 <script>
   const questions = [
     {
-      question: "Endometrial cancer: list the key features that define high-intermediate risk (HIR) after hysterectomy and staging.",
-      answer: "Common HIR frameworks use combinations of age plus risk factors such as deep myometrial invasion, grade 2–3, and/or LVSI. Exact definitions differ by trial/guideline; in practice HIR typically means stage I endometrioid disease with substantial LVSI and/or deep invasion with higher grade, especially in older patients.",
-      explanation: "Royal-style answers should show you know the variables (age, invasion depth, grade, LVSI) and that definitions vary (e.g., GOG/PORTEC-style criteria).",
-      reference: "PORTEC-1/2; GOG-99; NCCN/ESGO endometrial cancer guidance"
+      question: "Endometrial cancer: list the key features that define high‑intermediate risk (HIR) after hysterectomy and staging.",
+      answer: "HIR is defined by combinations of age and pathologic risk factors such as deep myometrial invasion, grade 2–3 disease, and/or substantial LVSI. Definitions vary between GOG‑99 and PORTEC, but all reflect increased locoregional recurrence risk.",
+      explanation: "Royal answers should identify the variables (age, invasion depth, grade, LVSI) and acknowledge trial‑specific definitions rather than quoting a single rigid rule.",
+      reference: "GOG‑99; PORTEC‑1/2; ESGO‑ESTRO‑ESP guidelines"
     },
     {
       question: "Ovarian cancer: when is interval debulking surgery considered and what must be documented before proceeding?",
-      answer: "Interval debulking is considered after neoadjuvant platinum-based chemotherapy when primary debulking is not feasible or would carry unacceptable morbidity. Before proceeding, document initial disease extent, rationale for NACT, response assessment (clinical/radiologic +/- CA-125), fitness for surgery, and plan for complete/optimal cytoreduction.",
-      explanation: "Examiner is looking for: indication (unresectable/high morbidity upfront), and structured pre-op documentation including response and surgical goal.",
-      reference: "EORTC 55971; CHORUS; NCCN ovarian cancer guidance"
+      answer: "Interval debulking is considered after neoadjuvant platinum‑based chemotherapy when primary debulking is not feasible or carries excessive morbidity. Documentation must include initial disease extent, rationale for NACT, objective response assessment, surgical fitness, and intent to achieve complete cytoreduction.",
+      explanation: "Examiners look for correct indication for NACT and structured pre‑operative documentation before IDS.",
+      reference: "EORTC 55971; CHORUS; NCCN ovarian cancer"
     },
     {
       question: "Cervical cancer: what are the indications for adjuvant chemoradiation after radical hysterectomy?",
-      answer: "High-risk pathologic features: positive nodes, positive margins, or parametrial involvement warrant adjuvant concurrent chemoradiation. Intermediate-risk factors (e.g., tumor size, deep stromal invasion, LVSI in combination) typically warrant pelvic radiation alone depending on criteria used.",
-      explanation: "Royal-style: separate high-risk (Peters) from intermediate-risk (Sedlis) and state what each implies for adjuvant therapy intensity.",
-      reference: "Peters et al.; Sedlis criteria; NCCN cervical cancer guidance"
-    },
-    {
-      question: "How is stage IA1 cervical cancer managed in a woman desiring fertility preservation?",
-      answer: "Stage IA1 cervical cancer without lymphovascular space invasion can be managed with cervical conization with negative margins.",
-      explanation: "The risk of lymph node metastasis in IA1 disease without LVSI is extremely low, allowing conservative surgical management.",
-      reference: "FIGO 2018; NCCN Cervical Cancer Guidelines"
-    },
-    {
-      question: "What is the standard adjuvant treatment for stage IIIC high‑grade serous ovarian cancer?",
-      answer: "Combination platinum‑based chemotherapy, typically carboplatin and paclitaxel, with consideration of maintenance therapy depending on molecular profile.",
-      explanation: "Stage IIIC disease has a high risk of recurrence; platinum‑taxane chemotherapy remains the backbone of treatment.",
-      reference: "NCCN Ovarian Cancer Guidelines; ICON‑7"
+      answer: "High‑risk pathologic features—positive lymph nodes, positive margins, or parametrial involvement—require adjuvant concurrent chemoradiation. Intermediate‑risk factors warrant pelvic radiotherapy alone.",
+      explanation: "Candidates should clearly separate Peters (high‑risk) from Sedlis (intermediate‑risk) criteria and link each to treatment intensity.",
+      reference: "Peters et al.; Sedlis criteria; NCCN cervical cancer"
     }
   ];
 
   let currentIndex = 0;
+  let timeLeft = 180; // 3 minutes per question
+  let timerInterval = null;
+
+  function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+    document.getElementById('timer').innerText = `Time left: ${minutes}:${seconds.toString().padStart(2,'0')}`;
+    if (timeLeft <= 0) {
+      clearInterval(timerInterval);
+      return;
+    }
+    timeLeft--;
+  }
 
   function loadQuestion() {
+    document.getElementById('counter').innerText = `Question ${currentIndex + 1} of ${questions.length}`;
     document.getElementById('question').innerText = questions[currentIndex].question;
-    document.getElementById('userAnswer').value = '';
     document.getElementById('answerSection').classList.add('hidden');
+
+    clearInterval(timerInterval);
+    timeLeft = 180;
+    updateTimer();
+    timerInterval = setInterval(updateTimer, 1000);
   }
 
   function showAnswer() {

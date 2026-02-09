@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gynecologic Oncology Exam Practice</title>
+  <title>Gynecologic Oncology – Review Questions</title>
+
   <style>
     body {
       margin: 0;
@@ -12,65 +13,131 @@
       color: #222;
       background: #f5f7fa;
     }
+
+    /* Top navigation */
+    .topnav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      background: linear-gradient(90deg, #162a45, #1f3a5f);
+      padding: 0.9rem 1rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .topnav a {
+      color: #e6edf6;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      letter-spacing: 0.02em;
+      position: relative;
+      padding-bottom: 0.2rem;
+    }
+
+    .topnav a::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #ffffff;
+      transition: width 0.25s ease;
+    }
+
+    .topnav a:hover::after {
+      width: 100%;
+    }
+
     header {
       background: #1f3a5f;
       color: white;
-      padding: 2rem 1rem;
+      padding: 2.2rem 1rem 2rem 1rem;
       text-align: center;
     }
+
     main {
       max-width: 900px;
       margin: 2rem auto;
       padding: 0 1rem;
     }
+
     section {
       background: white;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 1.6rem;
+      margin-bottom: 1.6rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
     }
+
+    textarea {
+      width: 100%;
+      min-height: 60px;
+      margin-bottom: 0.7rem;
+      padding: 0.55rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
     button {
       background: #1f3a5f;
       color: white;
       border: none;
-      padding: 0.6rem 1rem;
+      padding: 0.6rem 1.1rem;
       border-radius: 6px;
       cursor: pointer;
       font-size: 0.95rem;
       margin-right: 0.5rem;
     }
+
     button.secondary {
       background: #e3ecf7;
       color: #1f3a5f;
     }
-    textarea {
-      width: 100%;
-      min-height: 60px;
-      margin-top: 0.4rem;
-      margin-bottom: 0.6rem;
-      padding: 0.5rem;
-      font-family: inherit;
-    }
-    .hidden { display: none; }
+
     .meta {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #555;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .hidden { display: none; }
+
+    footer {
+      margin-top: 3rem;
+      padding: 1.7rem 1rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #555;
+      border-top: 1px solid #ddd;
+      background: #fafafa;
     }
   </style>
 </head>
+
 <body>
+
+<nav class="topnav">
+  <a href="#">Home</a>
+  <a href="#">Cervix</a>
+  <a href="#">Endometrium</a>
+  <a href="#">Ovary</a>
+  <a href="#">About</a>
+</nav>
 
 <header>
   <h1>Gynecologic Oncology – Review Questions</h1>
-  <p>Structured 3‑minute open questions (≈1 minute per section)</p>
+  <p>Structured 3-minute open questions (≈1 minute per section)</p>
 </header>
 
 <main>
   <section>
     <div class="meta" id="counter"></div>
     <div class="meta" id="timer"></div>
+    <div class="meta" id="lastUpdated"></div>
 
     <h2 id="question"></h2>
 
@@ -83,7 +150,7 @@
     <label><strong>Part C</strong></label>
     <textarea></textarea>
 
-    <div style="margin-top:1rem;">
+    <div style="margin-top:1.1rem;">
       <button onclick="showAnswer()">Show answer</button>
       <button class="secondary" onclick="newQuestion()">Next question</button>
     </div>
@@ -101,22 +168,32 @@
   </section>
 </main>
 
+<footer>
+  © <span id="year"></span> <strong>Yoav Brezinov, MD MSc</strong><br>
+  Gynecologic Oncology · Educational Resource<br>
+  <span style="color:#777;">
+    For educational use only · Not a substitute for clinical judgment
+  </span>
+</footer>
+
 <script>
+document.getElementById("year").innerText = new Date().getFullYear();
+
 let questions = [];
 let currentIndex = 0;
-let timeLeft = 180; // 3 minutes per question
+let timeLeft = 180;
 let timerInterval = null;
 
-/* ---------- LOAD QUESTIONS ---------- */
 fetch("data/questions.json")
   .then(res => res.json())
   .then(data => {
-    questions = data;
-    newQuestion(); // ONLY start after data is loaded
+    questions = data.questions;
+    document.getElementById("lastUpdated").innerText =
+      `Last updated: ${data.last_updated} · ${data.n_questions} questions`;
+    newQuestion();
   })
   .catch(err => console.error("Failed to load questions:", err));
 
-/* ---------- TIMER ---------- */
 function updateTimer() {
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
@@ -130,7 +207,6 @@ function updateTimer() {
   timeLeft--;
 }
 
-/* ---------- LOAD QUESTION ---------- */
 function loadQuestion() {
   const q = questions[currentIndex];
 
@@ -151,7 +227,6 @@ function loadQuestion() {
   timerInterval = setInterval(updateTimer, 1000);
 }
 
-/* ---------- SHOW ANSWER ---------- */
 function showAnswer() {
   const q = questions[currentIndex];
   document.getElementById('correctAnswer').innerText = q.answer;
@@ -160,14 +235,12 @@ function showAnswer() {
   document.getElementById('answerSection').classList.remove('hidden');
 }
 
-/* ---------- NEXT QUESTION ---------- */
 function newQuestion() {
   if (!questions.length) return;
   currentIndex = Math.floor(Math.random() * questions.length);
   loadQuestion();
 }
 </script>
-
 
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My GitHub Pages Site</title>
+  <title>Gynecologic Oncology Exam Practice</title>
   <style>
     body {
       margin: 0;
@@ -18,22 +18,6 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    nav {
-      background: #162a45;
-      padding: 0.75rem 1rem;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    nav a {
-      color: #cfd8e3;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    nav a:hover {
-      color: white;
-      text-decoration: underline;
-    }
     main {
       max-width: 900px;
       margin: 2rem auto;
@@ -46,72 +30,123 @@
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #666;
-      font-size: 0.9rem;
+    button {
+      background: #1f3a5f;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.95rem;
     }
-    .badge {
-      display: inline-block;
+    button.secondary {
       background: #e3ecf7;
       color: #1f3a5f;
-      padding: 0.25rem 0.6rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      margin-right: 0.5rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      font-family: inherit;
+    }
+    .hidden { display: none; }
+    .meta {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Welcome to My GitHub Pages Site</h1>
-    <p>A clean, minimal starter website hosted for free</p>
-  </header>
+<header>
+  <h1>Gynecologic Oncology – Royal Exam Practice</h1>
+  <p>Open‑ended viva‑style questions with references and explanations</p>
+</header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<main>
+  <section>
+    <h2 id="question"></h2>
 
-  <main>
-    <section id="about">
-      <h2>About</h2>
-      <p>
-        This is a simple static website built with plain HTML and CSS and hosted using GitHub Pages.
-        No frameworks, no build tools, no nonsense.
-      </p>
-    </section>
+    <label><strong>Your answer:</strong></label>
+    <textarea id="userAnswer" placeholder="Type your answer here…"></textarea>
 
-    <section id="projects">
-      <h2>Projects</h2>
-      <p>
-        You can list projects, papers, tools, or anything else here.
-      </p>
-      <ul>
-        <li><span class="badge">Web</span> Personal academic site</li>
-        <li><span class="badge">Research</span> Clinical trial summaries</li>
-        <li><span class="badge">AI</span> Medical imaging prototypes</li>
-      </ul>
-    </section>
+    <div style="margin-top:1rem;">
+      <button onclick="showAnswer()">Show answer</button>
+      <button class="secondary" onclick="newQuestion()">Next question</button>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>
-        Put your email, GitHub, or LinkedIn here.
-      </p>
-      <p>
-        📧 yourname@email.com<br />
-        🔗 github.com/yourusername
-      </p>
-    </section>
-  </main>
+  <section id="answerSection" class="hidden">
+    <h3>Model answer</h3>
+    <p id="correctAnswer"></p>
 
-  <footer>
-    © 2026 Your Name · Hosted on GitHub Pages
-  </footer>
+    <h4>Explanation</h4>
+    <p id="explanation"></p>
+
+    <h4>Reference</h4>
+    <p class="meta" id="reference"></p>
+  </section>
+</main>
+
+<script>
+  const questions = [
+    {
+      question: "Endometrial cancer: list the key features that define high-intermediate risk (HIR) after hysterectomy and staging.",
+      answer: "Common HIR frameworks use combinations of age plus risk factors such as deep myometrial invasion, grade 2–3, and/or LVSI. Exact definitions differ by trial/guideline; in practice HIR typically means stage I endometrioid disease with substantial LVSI and/or deep invasion with higher grade, especially in older patients.",
+      explanation: "Royal-style answers should show you know the variables (age, invasion depth, grade, LVSI) and that definitions vary (e.g., GOG/PORTEC-style criteria).",
+      reference: "PORTEC-1/2; GOG-99; NCCN/ESGO endometrial cancer guidance"
+    },
+    {
+      question: "Ovarian cancer: when is interval debulking surgery considered and what must be documented before proceeding?",
+      answer: "Interval debulking is considered after neoadjuvant platinum-based chemotherapy when primary debulking is not feasible or would carry unacceptable morbidity. Before proceeding, document initial disease extent, rationale for NACT, response assessment (clinical/radiologic +/- CA-125), fitness for surgery, and plan for complete/optimal cytoreduction.",
+      explanation: "Examiner is looking for: indication (unresectable/high morbidity upfront), and structured pre-op documentation including response and surgical goal.",
+      reference: "EORTC 55971; CHORUS; NCCN ovarian cancer guidance"
+    },
+    {
+      question: "Cervical cancer: what are the indications for adjuvant chemoradiation after radical hysterectomy?",
+      answer: "High-risk pathologic features: positive nodes, positive margins, or parametrial involvement warrant adjuvant concurrent chemoradiation. Intermediate-risk factors (e.g., tumor size, deep stromal invasion, LVSI in combination) typically warrant pelvic radiation alone depending on criteria used.",
+      explanation: "Royal-style: separate high-risk (Peters) from intermediate-risk (Sedlis) and state what each implies for adjuvant therapy intensity.",
+      reference: "Peters et al.; Sedlis criteria; NCCN cervical cancer guidance"
+    },
+    {
+      question: "How is stage IA1 cervical cancer managed in a woman desiring fertility preservation?",
+      answer: "Stage IA1 cervical cancer without lymphovascular space invasion can be managed with cervical conization with negative margins.",
+      explanation: "The risk of lymph node metastasis in IA1 disease without LVSI is extremely low, allowing conservative surgical management.",
+      reference: "FIGO 2018; NCCN Cervical Cancer Guidelines"
+    },
+    {
+      question: "What is the standard adjuvant treatment for stage IIIC high‑grade serous ovarian cancer?",
+      answer: "Combination platinum‑based chemotherapy, typically carboplatin and paclitaxel, with consideration of maintenance therapy depending on molecular profile.",
+      explanation: "Stage IIIC disease has a high risk of recurrence; platinum‑taxane chemotherapy remains the backbone of treatment.",
+      reference: "NCCN Ovarian Cancer Guidelines; ICON‑7"
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function loadQuestion() {
+    document.getElementById('question').innerText = questions[currentIndex].question;
+    document.getElementById('userAnswer').value = '';
+    document.getElementById('answerSection').classList.add('hidden');
+  }
+
+  function showAnswer() {
+    const q = questions[currentIndex];
+    document.getElementById('correctAnswer').innerText = q.answer;
+    document.getElementById('explanation').innerText = q.explanation;
+    document.getElementById('reference').innerText = q.reference;
+    document.getElementById('answerSection').classList.remove('hidden');
+  }
+
+  function newQuestion() {
+    currentIndex = Math.floor(Math.random() * questions.length);
+    loadQuestion();
+  }
+
+  newQuestion();
+</script>
 
 </body>
 </html>

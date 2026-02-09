@@ -184,7 +184,7 @@ let currentIndex = 0;
 let timeLeft = 180;
 let timerInterval = null;
 
-fetch("data/questions.json")
+fetch("pages/data/questions.json")
   .then(res => res.json())
   .then(data => {
     questions = data.questions;

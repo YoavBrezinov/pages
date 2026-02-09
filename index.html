@@ -102,68 +102,72 @@
 </main>
 
 <script>
-  const questions = [
-    {
-      question: "Endometrial cancer: list the key features that define high‑intermediate risk (HIR) after hysterectomy and staging.",
-      answer: "HIR is defined by combinations of age and pathologic risk factors such as deep myometrial invasion, grade 2–3 disease, and/or substantial LVSI. Definitions vary between GOG‑99 and PORTEC, but all reflect increased locoregional recurrence risk.",
-      explanation: "Royal answers should identify the variables (age, invasion depth, grade, LVSI) and acknowledge trial‑specific definitions rather than quoting a single rigid rule.",
-      reference: "GOG‑99; PORTEC‑1/2; ESGO‑ESTRO‑ESP guidelines"
-    },
-    {
-      question: "Ovarian cancer: when is interval debulking surgery considered and what must be documented before proceeding?",
-      answer: "Interval debulking is considered after neoadjuvant platinum‑based chemotherapy when primary debulking is not feasible or carries excessive morbidity. Documentation must include initial disease extent, rationale for NACT, objective response assessment, surgical fitness, and intent to achieve complete cytoreduction.",
-      explanation: "Examiners look for correct indication for NACT and structured pre‑operative documentation before IDS.",
-      reference: "EORTC 55971; CHORUS; NCCN ovarian cancer"
-    },
-    {
-      question: "Cervical cancer: what are the indications for adjuvant chemoradiation after radical hysterectomy?",
-      answer: "High‑risk pathologic features—positive lymph nodes, positive margins, or parametrial involvement—require adjuvant concurrent chemoradiation. Intermediate‑risk factors warrant pelvic radiotherapy alone.",
-      explanation: "Candidates should clearly separate Peters (high‑risk) from Sedlis (intermediate‑risk) criteria and link each to treatment intensity.",
-      reference: "Peters et al.; Sedlis criteria; NCCN cervical cancer"
-    }
-  ];
+let questions = [];
+let currentIndex = 0;
+let timeLeft = 180; // 3 minutes per question
+let timerInterval = null;
 
-  let currentIndex = 0;
-  let timeLeft = 180; // 3 minutes per question
-  let timerInterval = null;
+/* ---------- LOAD QUESTIONS ---------- */
+fetch("data/questions.json")
+  .then(res => res.json())
+  .then(data => {
+    questions = data;
+    newQuestion(); // ONLY start after data is loaded
+  })
+  .catch(err => console.error("Failed to load questions:", err));
 
-  function updateTimer() {
-    const minutes = Math.floor(timeLeft / 60);
-    const seconds = timeLeft % 60;
-    document.getElementById('timer').innerText = `Time left: ${minutes}:${seconds.toString().padStart(2,'0')}`;
-    if (timeLeft <= 0) {
-      clearInterval(timerInterval);
-      return;
-    }
-    timeLeft--;
-  }
+/* ---------- TIMER ---------- */
+function updateTimer() {
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+  document.getElementById('timer').innerText =
+    `Time left: ${minutes}:${seconds.toString().padStart(2,'0')}`;
 
-  function loadQuestion() {
-    document.getElementById('counter').innerText = `Question ${currentIndex + 1} of ${questions.length}`;
-    document.getElementById('question').innerText = questions[currentIndex].question;
-    document.getElementById('answerSection').classList.add('hidden');
-
+  if (timeLeft <= 0) {
     clearInterval(timerInterval);
-    timeLeft = 180;
-    updateTimer();
-    timerInterval = setInterval(updateTimer, 1000);
+    return;
   }
+  timeLeft--;
+}
 
-  function showAnswer() {
-    const q = questions[currentIndex];
-    document.getElementById('correctAnswer').innerText = q.answer;
-    document.getElementById('explanation').innerText = q.explanation;
-    document.getElementById('reference').innerText = q.reference;
-    document.getElementById('answerSection').classList.remove('hidden');
-  }
+/* ---------- LOAD QUESTION ---------- */
+function loadQuestion() {
+  const q = questions[currentIndex];
 
-  function newQuestion() {
-    currentIndex = Math.floor(Math.random() * questions.length);
-    loadQuestion();
-  }
+  document.getElementById('counter').innerText =
+    `Question ${currentIndex + 1} of ${questions.length}`;
 
-  newQuestion();
+  document.getElementById('question').innerText =
+    q.vignette +
+    "\n\nA. " + q.parts.A +
+    "\nB. " + q.parts.B +
+    "\nC. " + q.parts.C;
+
+  document.getElementById('answerSection').classList.add('hidden');
+
+  clearInterval(timerInterval);
+  timeLeft = 180;
+  updateTimer();
+  timerInterval = setInterval(updateTimer, 1000);
+}
+
+/* ---------- SHOW ANSWER ---------- */
+function showAnswer() {
+  const q = questions[currentIndex];
+  document.getElementById('correctAnswer').innerText = q.answer;
+  document.getElementById('explanation').innerText = q.explanation;
+  document.getElementById('reference').innerText = q.reference;
+  document.getElementById('answerSection').classList.remove('hidden');
+}
+
+/* ---------- NEXT QUESTION ---------- */
+function newQuestion() {
+  if (!questions.length) return;
+  currentIndex = Math.floor(Math.random() * questions.length);
+  loadQuestion();
+}
 </script>
+
 
 </body>
 </html>
